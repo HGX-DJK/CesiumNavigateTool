@@ -12,17 +12,19 @@
 
 ```javascript
 
-var viewer = new Cesium.Viewer('cesiumContainer', {
-    imageryProvider: false,
-    baseLayerPicker: false,
-    timeline: false,
-    infoBox: false,
-    navigationHelpButton: false,
-    fullscreenButton: false,
-    animation: false,
-    geocoder: false,
-    homeButton: false,
-    sceneModePicker: false
+var  viewer = new Cesium.Viewer("cesium-container", {
+    geocoder: true,              //控制地图是否显示一个地理编码（geocoding）控件，允许用户搜索地点并定位到特定位置。
+    homeButton: false,            //控制是否显示一个回到初始视图的按钮，允许用户快速返回到地图的初始状态
+    animation: false,             //控制是否显示动画控件，允许用户播放、暂停或者改变时间。
+    fullscreenButton: false,      //控制是否显示全屏按钮，允许用户切换地图进入或退出全屏模式。
+    sceneModePicker: false,       //控制是否显示场景模式选择器，允许用户在 2D、3D 和 CV（Columbus View）模式之间切换
+    timeline: false,              //控制是否显示时间轴控件，允许用户在时间上浏览数据。
+    navigationHelpButton: true,  //控制是否显示导航帮助按钮，提供关于如何使用地图导航控件的帮助信息
+    baseLayerPicker: true,       //控制是否显示基础图层选择器，允许用户选择不同的基础图层（如卫星影像、地图等）。
+    infoBox: true,               //控制是否显示信息框，当用户点击地图上的对象时，会显示与该对象相关的信息。
+    scene3DOnly: true,           //如果设置为true，则所有几何图形以3D模式绘制以节约GPU资源
+    selectionIndicator: true,    //控制是否显示选择指示器，用于指示当前选择的地图对象。
+    baselLayerPicker: true,      //控制是否显示基础图层选择器，允许用户选择不同的基础图层。
 });
 
 var options = {};
