@@ -1,4 +1,4 @@
-# cesium-navigation-umd
+# Cesium指北针及放大缩小组件
 
 ## 使用说明
 

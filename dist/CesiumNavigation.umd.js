@@ -1410,12 +1410,12 @@
     this.enableCompass = defined$6(options.enableCompass) ? options.enableCompass : true;
     this.navigationLocked = false;
     this.compassPosition = defined$6(this.terria.options.compassPosition) ? this.terria.options.compassPosition : {
-      bottom: "40rem",
-      right: "10rem"
+      bottom: "12rem",
+      right: "0rem"
     };
     this.zoomPosition = defined$6(this.terria.options.zoomPosition) ? this.terria.options.zoomPosition : {
-      bottom: "10rem",
-      right: "10rem"
+      bottom: "4rem",
+      right: "1.5rem"
     };
     this.controls = options.controls;
     if (!defined$6(this.controls)) {
