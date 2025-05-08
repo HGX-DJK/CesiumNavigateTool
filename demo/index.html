@@ -4,9 +4,9 @@
 <head>
     <title>CesiumNavigation Demo</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    
     <link rel="stylesheet" type="text/css" href="./Cesium/Widgets/widgets.css">
     <link rel="stylesheet" type="text/css" href="../dist/cesium-navigation.css">
+
     <script type="text/javascript" src="./Cesium/Cesium.js"></script>
     <script type="text/javascript" src="../dist/CesiumNavigation.umd.js"></script>
 
@@ -23,12 +23,12 @@
             fullscreenButton: false,      //控制是否显示全屏按钮，允许用户切换地图进入或退出全屏模式。
             sceneModePicker: false,       //控制是否显示场景模式选择器，允许用户在 2D、3D 和 CV（Columbus View）模式之间切换
             timeline: false,              //控制是否显示时间轴控件，允许用户在时间上浏览数据。
-            navigationHelpButton: true,  //控制是否显示导航帮助按钮，提供关于如何使用地图导航控件的帮助信息
-            baseLayerPicker: true,       //控制是否显示基础图层选择器，允许用户选择不同的基础图层（如卫星影像、地图等）。
-            infoBox: true,               //控制是否显示信息框，当用户点击地图上的对象时，会显示与该对象相关的信息。
-            scene3DOnly: true,           //如果设置为true，则所有几何图形以3D模式绘制以节约GPU资源
-            selectionIndicator: true,    //控制是否显示选择指示器，用于指示当前选择的地图对象。
-            baselLayerPicker: true,      //控制是否显示基础图层选择器，允许用户选择不同的基础图层。
+            navigationHelpButton: true,   //控制是否显示导航帮助按钮，提供关于如何使用地图导航控件的帮助信息
+            baseLayerPicker: true,        //控制是否显示基础图层选择器，允许用户选择不同的基础图层（如卫星影像、地图等）。
+            infoBox: true,                //控制是否显示信息框，当用户点击地图上的对象时，会显示与该对象相关的信息。
+            scene3DOnly: true,            //如果设置为true，则所有几何图形以3D模式绘制以节约GPU资源
+            selectionIndicator: true,     //控制是否显示选择指示器，用于指示当前选择的地图对象。
+            baselLayerPicker: true,       //控制是否显示基础图层选择器，允许用户选择不同的基础图层。
         });
         setViewDestination();
         //设置地图视角

@@ -330,25 +330,15 @@ function orbit (viewModel, compassElement, cursorVector) {
   };
   switch (scene.mode) {
     case SceneMode.COLUMBUS_VIEW:
-      if (sscc.enableLook) {
-        break
-      };
-      if (!sscc.enableTranslate || !sscc.enableTilt) {
-        return
-      };
+      if (sscc.enableLook)   break;
+      if (!sscc.enableTranslate || !sscc.enableTilt)  return;
       break
     case SceneMode.SCENE3D:
-      if (sscc.enableLook) {
-        break
-      };
-      if (!sscc.enableTilt || !sscc.enableRotate) {
-        return
-      }
+      if (sscc.enableLook) break;
+      if (!sscc.enableTilt || !sscc.enableRotate) return;
       break
     case SceneMode.SCENE2D:
-      if (!sscc.enableTranslate) {
-        return
-      }
+      if (!sscc.enableTranslate) return
       break
   }
 

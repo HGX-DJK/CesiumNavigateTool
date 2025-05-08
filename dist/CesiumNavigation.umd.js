@@ -2550,25 +2550,15 @@
     }
     switch (scene.mode) {
       case SceneMode$2.COLUMBUS_VIEW:
-        if (sscc.enableLook) {
-          break;
-        }
-        if (!sscc.enableTranslate || !sscc.enableTilt) {
-          return;
-        }
+        if (sscc.enableLook) break;
+        if (!sscc.enableTranslate || !sscc.enableTilt) return;
         break;
       case SceneMode$2.SCENE3D:
-        if (sscc.enableLook) {
-          break;
-        }
-        if (!sscc.enableTilt || !sscc.enableRotate) {
-          return;
-        }
+        if (sscc.enableLook) break;
+        if (!sscc.enableTilt || !sscc.enableRotate) return;
         break;
       case SceneMode$2.SCENE2D:
-        if (!sscc.enableTranslate) {
-          return;
-        }
+        if (!sscc.enableTranslate) return;
         break;
     }
 

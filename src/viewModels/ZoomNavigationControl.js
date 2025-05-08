@@ -80,9 +80,9 @@ ZoomNavigationControl.prototype.zoom = function (relativeAmount) {
       return
     }
     // TODO
-    //            if(scene.mode == SceneMode.COLUMBUS_VIEW && !sscc.enableTranslate) {
-    //                return;
-    //            }
+    //  if(scene.mode == SceneMode.COLUMBUS_VIEW && !sscc.enableTranslate) {
+    //      return;
+    //  }
 
     var camera = scene.camera
     var orientation
