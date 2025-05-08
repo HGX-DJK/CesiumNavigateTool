@@ -2,6 +2,7 @@
 import Cesium from './cesium/Cesium'
 import DistanceLegendViewModel from './viewModels/DistanceLegendViewModel'
 import NavigationViewModel from './viewModels/NavigationViewModel'
+import "./styles/cesium-navigation.less";
 
 var defined = Cesium.defined
 var CesiumEvent = Cesium.Event

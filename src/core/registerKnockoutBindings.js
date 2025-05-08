@@ -8,7 +8,6 @@ var registerKnockoutBindings = function () {
   SvgPathBindingHandler.register(Knockout)
   KnockoutMarkdownBinding.register(Knockout)
   KnockoutHammerBinding.register(Knockout)
-
   Knockout.bindingHandlers.embeddedComponent = {
     init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
       var component = Knockout.unwrap(valueAccessor())

@@ -25,10 +25,8 @@ var KnockoutMarkdownBinding = {
         // Remove existing children of this element.
         while (element.firstChild) {
           Knockout.removeNode(element.firstChild)
-        }
-
+        };
         var rawText = Knockout.unwrap(valueAccessor())
-
         // If the text contains an <html> tag, don't try to interpret it as Markdown because
         // we'll probably break it in the process.
         var html
@@ -36,11 +34,9 @@ var KnockoutMarkdownBinding = {
           html = rawText
         } else {
           html = md.render(rawText)
-        }
-
+        };
         var nodes = Knockout.utils.parseHtmlFragment(html, element)
         element.className = element.className + ' markdown'
-
         for (var i = 0; i < nodes.length; ++i) {
           var node = nodes[i]
           setAnchorTargets(node)

@@ -1,6 +1,5 @@
 import Cesium from "./cesium/Cesium";
 import CesiumNavigation from "./CesiumNavigation";
-import "./styles/cesium-navigation.css";
 
 var defined = Cesium.defined;
 var DeveloperError = Cesium.DeveloperError;

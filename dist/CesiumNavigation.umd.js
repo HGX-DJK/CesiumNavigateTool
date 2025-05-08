@@ -1,453 +1,10 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('core-js/modules/es6.object.to-string.js'), require('core-js/modules/es6.date.to-string.js'), require('core-js/modules/es6.regexp.to-string.js'), require('core-js/modules/es6.function.name.js'), require('core-js/modules/es6.object.create.js'), require('core-js/modules/es6.object.define-properties.js')) :
+  typeof define === 'function' && define.amd ? define(['core-js/modules/es6.object.to-string.js', 'core-js/modules/es6.date.to-string.js', 'core-js/modules/es6.regexp.to-string.js', 'core-js/modules/es6.function.name.js', 'core-js/modules/es6.object.create.js', 'core-js/modules/es6.object.define-properties.js'], factory) :
   (global = global || self, (global.CesiumNavigation = global.CesiumNavigation || {}, global.CesiumNavigation.umd = factory()));
 }(this, (function () { 'use strict';
 
   var Cesium = window.Cesium;
-
-  var toString = {}.toString;
-
-  var _cof = function (it) {
-    return toString.call(it).slice(8, -1);
-  };
-
-  var _cof$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _cof,
-    __moduleExports: _cof
-  });
-
-  function createCommonjsModule(fn, module) {
-  	return module = { exports: {} }, fn(module, module.exports), module.exports;
-  }
-
-  var _core = createCommonjsModule(function (module) {
-  var core = module.exports = { version: '2.6.12' };
-  if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
-  });
-  var _core_1 = _core.version;
-
-  var _core$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _core,
-    __moduleExports: _core,
-    version: _core_1
-  });
-
-  var _global = createCommonjsModule(function (module) {
-  // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
-  var global = module.exports = typeof window != 'undefined' && window.Math == Math
-    ? window : typeof self != 'undefined' && self.Math == Math ? self
-    // eslint-disable-next-line no-new-func
-    : Function('return this')();
-  if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
-  });
-
-  var _global$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _global,
-    __moduleExports: _global
-  });
-
-  var _library = false;
-
-  var _library$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _library,
-    __moduleExports: _library
-  });
-
-  var core = ( _core$1 && _core ) || _core$1;
-
-  var require$$0 = ( _global$1 && _global ) || _global$1;
-
-  var require$$0$1 = ( _library$1 && _library ) || _library$1;
-
-  var _shared = createCommonjsModule(function (module) {
-  var SHARED = '__core-js_shared__';
-  var store = require$$0[SHARED] || (require$$0[SHARED] = {});
-
-  (module.exports = function (key, value) {
-    return store[key] || (store[key] = value !== undefined ? value : {});
-  })('versions', []).push({
-    version: core.version,
-    mode: require$$0$1 ? 'pure' : 'global',
-    copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
-  });
-  });
-
-  var _shared$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _shared,
-    __moduleExports: _shared
-  });
-
-  var id = 0;
-  var px = Math.random();
-  var _uid = function (key) {
-    return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
-  };
-
-  var _uid$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _uid,
-    __moduleExports: _uid
-  });
-
-  var require$$0$2 = ( _shared$1 && _shared ) || _shared$1;
-
-  var uid = ( _uid$1 && _uid ) || _uid$1;
-
-  var _wks = createCommonjsModule(function (module) {
-  var store = require$$0$2('wks');
-
-  var Symbol = require$$0.Symbol;
-  var USE_SYMBOL = typeof Symbol == 'function';
-
-  var $exports = module.exports = function (name) {
-    return store[name] || (store[name] =
-      USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
-  };
-
-  $exports.store = store;
-  });
-
-  var _wks$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _wks,
-    __moduleExports: _wks
-  });
-
-  var cof = ( _cof$1 && _cof ) || _cof$1;
-
-  var require$$0$3 = ( _wks$1 && _wks ) || _wks$1;
-
-  // getting tag from 19.1.3.6 Object.prototype.toString()
-
-  var TAG = require$$0$3('toStringTag');
-  // ES3 wrong here
-  var ARG = cof(function () { return arguments; }()) == 'Arguments';
-
-  // fallback for IE11 Script Access Denied error
-  var tryGet = function (it, key) {
-    try {
-      return it[key];
-    } catch (e) { /* empty */ }
-  };
-
-  var _classof = function (it) {
-    var O, T, B;
-    return it === undefined ? 'Undefined' : it === null ? 'Null'
-      // @@toStringTag case
-      : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
-      // builtinTag case
-      : ARG ? cof(O)
-      // ES3 arguments fallback
-      : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
-  };
-
-  var _classof$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _classof,
-    __moduleExports: _classof
-  });
-
-  var _isObject = function (it) {
-    return typeof it === 'object' ? it !== null : typeof it === 'function';
-  };
-
-  var _isObject$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _isObject,
-    __moduleExports: _isObject
-  });
-
-  var isObject = ( _isObject$1 && _isObject ) || _isObject$1;
-
-  var _anObject = function (it) {
-    if (!isObject(it)) throw TypeError(it + ' is not an object!');
-    return it;
-  };
-
-  var _anObject$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _anObject,
-    __moduleExports: _anObject
-  });
-
-  var _fails = function (exec) {
-    try {
-      return !!exec();
-    } catch (e) {
-      return true;
-    }
-  };
-
-  var _fails$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _fails,
-    __moduleExports: _fails
-  });
-
-  var require$$2 = ( _fails$1 && _fails ) || _fails$1;
-
-  // Thank's IE8 for his funny defineProperty
-  var _descriptors = !require$$2(function () {
-    return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
-  });
-
-  var _descriptors$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _descriptors,
-    __moduleExports: _descriptors
-  });
-
-  var document$1 = require$$0.document;
-  // typeof document.createElement is 'object' in old IE
-  var is = isObject(document$1) && isObject(document$1.createElement);
-  var _domCreate = function (it) {
-    return is ? document$1.createElement(it) : {};
-  };
-
-  var _domCreate$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _domCreate,
-    __moduleExports: _domCreate
-  });
-
-  var require$$0$4 = ( _descriptors$1 && _descriptors ) || _descriptors$1;
-
-  var require$$1 = ( _domCreate$1 && _domCreate ) || _domCreate$1;
-
-  var _ie8DomDefine = !require$$0$4 && !require$$2(function () {
-    return Object.defineProperty(require$$1('div'), 'a', { get: function () { return 7; } }).a != 7;
-  });
-
-  var _ie8DomDefine$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _ie8DomDefine,
-    __moduleExports: _ie8DomDefine
-  });
-
-  // 7.1.1 ToPrimitive(input [, PreferredType])
-
-  // instead of the ES6 spec version, we didn't implement @@toPrimitive case
-  // and the second argument - flag - preferred type is a string
-  var _toPrimitive = function (it, S) {
-    if (!isObject(it)) return it;
-    var fn, val;
-    if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
-    if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
-    if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
-    throw TypeError("Can't convert object to primitive value");
-  };
-
-  var _toPrimitive$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _toPrimitive,
-    __moduleExports: _toPrimitive
-  });
-
-  var anObject = ( _anObject$1 && _anObject ) || _anObject$1;
-
-  var IE8_DOM_DEFINE = ( _ie8DomDefine$1 && _ie8DomDefine ) || _ie8DomDefine$1;
-
-  var toPrimitive = ( _toPrimitive$1 && _toPrimitive ) || _toPrimitive$1;
-
-  var dP = Object.defineProperty;
-
-  var f = require$$0$4 ? Object.defineProperty : function defineProperty(O, P, Attributes) {
-    anObject(O);
-    P = toPrimitive(P, true);
-    anObject(Attributes);
-    if (IE8_DOM_DEFINE) try {
-      return dP(O, P, Attributes);
-    } catch (e) { /* empty */ }
-    if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
-    if ('value' in Attributes) O[P] = Attributes.value;
-    return O;
-  };
-
-  var _objectDp = {
-  	f: f
-  };
-
-  var _objectDp$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _objectDp,
-    __moduleExports: _objectDp,
-    f: f
-  });
-
-  var _propertyDesc = function (bitmap, value) {
-    return {
-      enumerable: !(bitmap & 1),
-      configurable: !(bitmap & 2),
-      writable: !(bitmap & 4),
-      value: value
-    };
-  };
-
-  var _propertyDesc$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _propertyDesc,
-    __moduleExports: _propertyDesc
-  });
-
-  var dP$1 = ( _objectDp$1 && _objectDp ) || _objectDp$1;
-
-  var createDesc = ( _propertyDesc$1 && _propertyDesc ) || _propertyDesc$1;
-
-  var _hide = require$$0$4 ? function (object, key, value) {
-    return dP$1.f(object, key, createDesc(1, value));
-  } : function (object, key, value) {
-    object[key] = value;
-    return object;
-  };
-
-  var _hide$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _hide,
-    __moduleExports: _hide
-  });
-
-  var hasOwnProperty = {}.hasOwnProperty;
-  var _has = function (it, key) {
-    return hasOwnProperty.call(it, key);
-  };
-
-  var _has$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _has,
-    __moduleExports: _has
-  });
-
-  var _functionToString = require$$0$2('native-function-to-string', Function.toString);
-
-  var _functionToString$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _functionToString,
-    __moduleExports: _functionToString
-  });
-
-  var hide = ( _hide$1 && _hide ) || _hide$1;
-
-  var has = ( _has$1 && _has ) || _has$1;
-
-  var $toString = ( _functionToString$1 && _functionToString ) || _functionToString$1;
-
-  var _redefine = createCommonjsModule(function (module) {
-  var SRC = uid('src');
-
-  var TO_STRING = 'toString';
-  var TPL = ('' + $toString).split(TO_STRING);
-
-  core.inspectSource = function (it) {
-    return $toString.call(it);
-  };
-
-  (module.exports = function (O, key, val, safe) {
-    var isFunction = typeof val == 'function';
-    if (isFunction) has(val, 'name') || hide(val, 'name', key);
-    if (O[key] === val) return;
-    if (isFunction) has(val, SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
-    if (O === require$$0) {
-      O[key] = val;
-    } else if (!safe) {
-      delete O[key];
-      hide(O, key, val);
-    } else if (O[key]) {
-      O[key] = val;
-    } else {
-      hide(O, key, val);
-    }
-  // add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
-  })(Function.prototype, TO_STRING, function toString() {
-    return typeof this == 'function' && this[SRC] || $toString.call(this);
-  });
-  });
-
-  var _redefine$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _redefine,
-    __moduleExports: _redefine
-  });
-
-  var classof = ( _classof$1 && _classof ) || _classof$1;
-
-  var redefine = ( _redefine$1 && _redefine ) || _redefine$1;
-
-  // 19.1.3.6 Object.prototype.toString()
-
-  var test = {};
-  test[require$$0$3('toStringTag')] = 'z';
-  if (test + '' != '[object z]') {
-    redefine(Object.prototype, 'toString', function toString() {
-      return '[object ' + classof(this) + ']';
-    }, true);
-  }
-
-  var DateProto = Date.prototype;
-  var INVALID_DATE = 'Invalid Date';
-  var TO_STRING = 'toString';
-  var $toString$1 = DateProto[TO_STRING];
-  var getTime = DateProto.getTime;
-  if (new Date(NaN) + '' != INVALID_DATE) {
-    redefine(DateProto, TO_STRING, function toString() {
-      var value = getTime.call(this);
-      // eslint-disable-next-line no-self-compare
-      return value === value ? $toString$1.call(this) : INVALID_DATE;
-    });
-  }
-
-  // 21.2.5.3 get RegExp.prototype.flags
-
-  var _flags = function () {
-    var that = anObject(this);
-    var result = '';
-    if (that.global) result += 'g';
-    if (that.ignoreCase) result += 'i';
-    if (that.multiline) result += 'm';
-    if (that.unicode) result += 'u';
-    if (that.sticky) result += 'y';
-    return result;
-  };
-
-  var _flags$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _flags,
-    __moduleExports: _flags
-  });
-
-  var $flags = ( _flags$1 && _flags ) || _flags$1;
-
-  // 21.2.5.3 get RegExp.prototype.flags()
-  if (require$$0$4 && /./g.flags != 'g') dP$1.f(RegExp.prototype, 'flags', {
-    configurable: true,
-    get: $flags
-  });
-
-  var TO_STRING$1 = 'toString';
-  var $toString$2 = /./[TO_STRING$1];
-
-  var define = function (fn) {
-    redefine(RegExp.prototype, TO_STRING$1, fn, true);
-  };
-
-  // 21.2.5.14 RegExp.prototype.toString()
-  if (require$$2(function () { return $toString$2.call({ source: 'a', flags: 'b' }) != '/a/b'; })) {
-    define(function toString() {
-      var R = anObject(this);
-      return '/'.concat(R.source, '/',
-        'flags' in R ? R.flags : !require$$0$4 && R instanceof RegExp ? $flags.call(R) : undefined);
-    });
-  // FF44- RegExp#toString has a wrong name
-  } else if ($toString$2.name != TO_STRING$1) {
-    define(function toString() {
-      return $toString$2.call(this);
-    });
-  }
 
   var createFragmentFromTemplate = function createFragmentFromTemplate(htmlString) {
     var holder = document.createElement('div');
@@ -601,388 +158,9 @@
     }
   }
 
-  var dP$2 = dP$1.f;
-  var FProto = Function.prototype;
-  var nameRE = /^\s*function ([^ (]*)/;
-  var NAME = 'name';
-
-  // 19.2.4.2 name
-  NAME in FProto || require$$0$4 && dP$2(FProto, NAME, {
-    configurable: true,
-    get: function () {
-      try {
-        return ('' + this).match(nameRE)[1];
-      } catch (e) {
-        return '';
-      }
-    }
-  });
-
-  var _aFunction = function (it) {
-    if (typeof it != 'function') throw TypeError(it + ' is not a function!');
-    return it;
-  };
-
-  var _aFunction$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _aFunction,
-    __moduleExports: _aFunction
-  });
-
-  var aFunction = ( _aFunction$1 && _aFunction ) || _aFunction$1;
-
-  // optional / simple context binding
-
-  var _ctx = function (fn, that, length) {
-    aFunction(fn);
-    if (that === undefined) return fn;
-    switch (length) {
-      case 1: return function (a) {
-        return fn.call(that, a);
-      };
-      case 2: return function (a, b) {
-        return fn.call(that, a, b);
-      };
-      case 3: return function (a, b, c) {
-        return fn.call(that, a, b, c);
-      };
-    }
-    return function (/* ...args */) {
-      return fn.apply(that, arguments);
-    };
-  };
-
-  var _ctx$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _ctx,
-    __moduleExports: _ctx
-  });
-
-  var ctx = ( _ctx$1 && _ctx ) || _ctx$1;
-
-  var PROTOTYPE = 'prototype';
-
-  var $export = function (type, name, source) {
-    var IS_FORCED = type & $export.F;
-    var IS_GLOBAL = type & $export.G;
-    var IS_STATIC = type & $export.S;
-    var IS_PROTO = type & $export.P;
-    var IS_BIND = type & $export.B;
-    var target = IS_GLOBAL ? require$$0 : IS_STATIC ? require$$0[name] || (require$$0[name] = {}) : (require$$0[name] || {})[PROTOTYPE];
-    var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
-    var expProto = exports[PROTOTYPE] || (exports[PROTOTYPE] = {});
-    var key, own, out, exp;
-    if (IS_GLOBAL) source = name;
-    for (key in source) {
-      // contains in native
-      own = !IS_FORCED && target && target[key] !== undefined;
-      // export native or passed
-      out = (own ? target : source)[key];
-      // bind timers to global for call from export context
-      exp = IS_BIND && own ? ctx(out, require$$0) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
-      // extend global
-      if (target) redefine(target, key, out, type & $export.U);
-      // export
-      if (exports[key] != out) hide(exports, key, exp);
-      if (IS_PROTO && expProto[key] != out) expProto[key] = out;
-    }
-  };
-  require$$0.core = core;
-  // type bitmap
-  $export.F = 1;   // forced
-  $export.G = 2;   // global
-  $export.S = 4;   // static
-  $export.P = 8;   // proto
-  $export.B = 16;  // bind
-  $export.W = 32;  // wrap
-  $export.U = 64;  // safe
-  $export.R = 128; // real proto method for `library`
-  var _export = $export;
-
-  var _export$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _export,
-    __moduleExports: _export
-  });
-
-  // fallback for non-array-like ES3 and non-enumerable old V8 strings
-
-  // eslint-disable-next-line no-prototype-builtins
-  var _iobject = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
-    return cof(it) == 'String' ? it.split('') : Object(it);
-  };
-
-  var _iobject$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _iobject,
-    __moduleExports: _iobject
-  });
-
-  // 7.2.1 RequireObjectCoercible(argument)
-  var _defined = function (it) {
-    if (it == undefined) throw TypeError("Can't call method on  " + it);
-    return it;
-  };
-
-  var _defined$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _defined,
-    __moduleExports: _defined
-  });
-
-  var IObject = ( _iobject$1 && _iobject ) || _iobject$1;
-
-  var defined$1 = ( _defined$1 && _defined ) || _defined$1;
-
-  // to indexed object, toObject with fallback for non-array-like ES3 strings
-
-
-  var _toIobject = function (it) {
-    return IObject(defined$1(it));
-  };
-
-  var _toIobject$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _toIobject,
-    __moduleExports: _toIobject
-  });
-
-  // 7.1.4 ToInteger
-  var ceil = Math.ceil;
-  var floor = Math.floor;
-  var _toInteger = function (it) {
-    return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
-  };
-
-  var _toInteger$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _toInteger,
-    __moduleExports: _toInteger
-  });
-
-  var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
-
-  // 7.1.15 ToLength
-
-  var min = Math.min;
-  var _toLength = function (it) {
-    return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-  };
-
-  var _toLength$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _toLength,
-    __moduleExports: _toLength
-  });
-
-  var max = Math.max;
-  var min$1 = Math.min;
-  var _toAbsoluteIndex = function (index, length) {
-    index = toInteger(index);
-    return index < 0 ? max(index + length, 0) : min$1(index, length);
-  };
-
-  var _toAbsoluteIndex$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _toAbsoluteIndex,
-    __moduleExports: _toAbsoluteIndex
-  });
-
-  var toIObject = ( _toIobject$1 && _toIobject ) || _toIobject$1;
-
-  var toLength = ( _toLength$1 && _toLength ) || _toLength$1;
-
-  var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteIndex$1;
-
-  // false -> Array#indexOf
-  // true  -> Array#includes
-
-
-
-  var _arrayIncludes = function (IS_INCLUDES) {
-    return function ($this, el, fromIndex) {
-      var O = toIObject($this);
-      var length = toLength(O.length);
-      var index = toAbsoluteIndex(fromIndex, length);
-      var value;
-      // Array#includes uses SameValueZero equality algorithm
-      // eslint-disable-next-line no-self-compare
-      if (IS_INCLUDES && el != el) while (length > index) {
-        value = O[index++];
-        // eslint-disable-next-line no-self-compare
-        if (value != value) return true;
-      // Array#indexOf ignores holes, Array#includes - not
-      } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
-        if (O[index] === el) return IS_INCLUDES || index || 0;
-      } return !IS_INCLUDES && -1;
-    };
-  };
-
-  var _arrayIncludes$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _arrayIncludes,
-    __moduleExports: _arrayIncludes
-  });
-
-  var shared = require$$0$2('keys');
-
-  var _sharedKey = function (key) {
-    return shared[key] || (shared[key] = uid(key));
-  };
-
-  var _sharedKey$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _sharedKey,
-    __moduleExports: _sharedKey
-  });
-
-  var require$$0$5 = ( _arrayIncludes$1 && _arrayIncludes ) || _arrayIncludes$1;
-
-  var require$$0$6 = ( _sharedKey$1 && _sharedKey ) || _sharedKey$1;
-
-  var arrayIndexOf = require$$0$5(false);
-  var IE_PROTO = require$$0$6('IE_PROTO');
-
-  var _objectKeysInternal = function (object, names) {
-    var O = toIObject(object);
-    var i = 0;
-    var result = [];
-    var key;
-    for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
-    // Don't enum bug & hidden keys
-    while (names.length > i) if (has(O, key = names[i++])) {
-      ~arrayIndexOf(result, key) || result.push(key);
-    }
-    return result;
-  };
-
-  var _objectKeysInternal$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _objectKeysInternal,
-    __moduleExports: _objectKeysInternal
-  });
-
-  // IE 8- don't enum bug keys
-  var _enumBugKeys = (
-    'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
-  ).split(',');
-
-  var _enumBugKeys$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _enumBugKeys,
-    __moduleExports: _enumBugKeys
-  });
-
-  var $keys = ( _objectKeysInternal$1 && _objectKeysInternal ) || _objectKeysInternal$1;
-
-  var enumBugKeys = ( _enumBugKeys$1 && _enumBugKeys ) || _enumBugKeys$1;
-
-  // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-
-
-
-  var _objectKeys = Object.keys || function keys(O) {
-    return $keys(O, enumBugKeys);
-  };
-
-  var _objectKeys$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _objectKeys,
-    __moduleExports: _objectKeys
-  });
-
-  var getKeys = ( _objectKeys$1 && _objectKeys ) || _objectKeys$1;
-
-  var _objectDps = require$$0$4 ? Object.defineProperties : function defineProperties(O, Properties) {
-    anObject(O);
-    var keys = getKeys(Properties);
-    var length = keys.length;
-    var i = 0;
-    var P;
-    while (length > i) dP$1.f(O, P = keys[i++], Properties[P]);
-    return O;
-  };
-
-  var _objectDps$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _objectDps,
-    __moduleExports: _objectDps
-  });
-
-  var document$2 = require$$0.document;
-  var _html = document$2 && document$2.documentElement;
-
-  var _html$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _html,
-    __moduleExports: _html
-  });
-
-  var require$$1$1 = ( _objectDps$1 && _objectDps ) || _objectDps$1;
-
-  var require$$2$1 = ( _html$1 && _html ) || _html$1;
-
-  // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-
-
-
-  var IE_PROTO$1 = require$$0$6('IE_PROTO');
-  var Empty = function () { /* empty */ };
-  var PROTOTYPE$1 = 'prototype';
-
-  // Create object with fake `null` prototype: use iframe Object with cleared prototype
-  var createDict = function () {
-    // Thrash, waste and sodomy: IE GC bug
-    var iframe = require$$1('iframe');
-    var i = enumBugKeys.length;
-    var lt = '<';
-    var gt = '>';
-    var iframeDocument;
-    iframe.style.display = 'none';
-    require$$2$1.appendChild(iframe);
-    iframe.src = 'javascript:'; // eslint-disable-line no-script-url
-    // createDict = iframe.contentWindow.Object;
-    // html.removeChild(iframe);
-    iframeDocument = iframe.contentWindow.document;
-    iframeDocument.open();
-    iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
-    iframeDocument.close();
-    createDict = iframeDocument.F;
-    while (i--) delete createDict[PROTOTYPE$1][enumBugKeys[i]];
-    return createDict();
-  };
-
-  var _objectCreate = Object.create || function create(O, Properties) {
-    var result;
-    if (O !== null) {
-      Empty[PROTOTYPE$1] = anObject(O);
-      result = new Empty();
-      Empty[PROTOTYPE$1] = null;
-      // add "__proto__" for Object.getPrototypeOf polyfill
-      result[IE_PROTO$1] = O;
-    } else result = createDict();
-    return Properties === undefined ? result : require$$1$1(result, Properties);
-  };
-
-  var _objectCreate$1 = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    'default': _objectCreate,
-    __moduleExports: _objectCreate
-  });
-
-  var $export$1 = ( _export$1 && _export ) || _export$1;
-
-  var require$$0$7 = ( _objectCreate$1 && _objectCreate ) || _objectCreate$1;
-
-  // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-  $export$1($export$1.S, 'Object', { create: require$$0$7 });
-
   var svgReset = 'M 7.5,0 C 3.375,0 0,3.375 0,7.5 0,11.625 3.375,15 7.5,15 c 3.46875,0 6.375,-2.4375 7.21875,-5.625 l -1.96875,0 C 12,11.53125 9.9375,13.125 7.5,13.125 4.40625,13.125 1.875,10.59375 1.875,7.5 1.875,4.40625 4.40625,1.875 7.5,1.875 c 1.59375,0 2.90625,0.65625 3.9375,1.6875 l -3,3 6.5625,0 L 15,0 12.75,2.25 C 11.4375,0.84375 9.5625,0 7.5,0 z';
 
-  // 19.1.2.3 / 15.2.3.7 Object.defineProperties(O, Properties)
-  $export$1($export$1.S + $export$1.F * !require$$0$4, 'Object', { defineProperties: require$$1$1 });
-
-  var defined$2 = Cesium.defined;
+  var defined$1 = Cesium.defined;
   var DeveloperError$1 = Cesium.DeveloperError;
   var Knockout$2 = Cesium.knockout;
   /**
@@ -995,7 +173,7 @@
    * @param {Terria} terria The Terria instance.
    */
   var UserInterfaceControl = function UserInterfaceControl(terria) {
-    if (!defined$2(terria)) {
+    if (!defined$1(terria)) {
       throw new DeveloperError$1('terria is required');
     }
     this._terria = terria;
@@ -1063,7 +241,7 @@
      */
     hasText: {
       get: function get() {
-        return defined$2(this.text) && typeof this.text === 'string';
+        return defined$1(this.text) && typeof this.text === 'string';
       }
     }
   });
@@ -1092,7 +270,7 @@
   };
   NavigationControl.prototype = Object.create(UserInterfaceControl.prototype);
 
-  var defined$3 = Cesium.defined;
+  var defined$2 = Cesium.defined;
   var Camera = Cesium.Camera;
   var Rectangle = Cesium.Rectangle;
   var Cartographic = Cesium.Cartographic;
@@ -1156,7 +334,7 @@
     }
     this.isActive = true;
     var camera = scene.camera;
-    if (defined$3(this.terria.trackedEntity)) {
+    if (defined$2(this.terria.trackedEntity)) {
       // when tracking do not reset to default view but to default view of tracked entity
       var trackedEntity = this.terria.trackedEntity;
       this.terria.trackedEntity = undefined;
@@ -1204,7 +382,7 @@
   };
 
   /* eslint-disable no-unused-vars */
-  var defined$4 = Cesium.defined;
+  var defined$3 = Cesium.defined;
   var Ray = Cesium.Ray;
   var Cartesian3 = Cesium.Cartesian3;
   var Cartographic$1 = Cesium.Cartographic;
@@ -1227,21 +405,21 @@
     if (scene.mode === SceneMode.MORPHING) {
       return undefined;
     }
-    if (!defined$4(result)) {
+    if (!defined$3(result)) {
       result = new Cartesian3();
     }
 
     // TODO bug when tracking: if entity moves the current position should be used and not only the one when starting orbiting/rotating
     // TODO bug when tracking: reset should reset to default view of tracked entity
 
-    if (defined$4(terria.trackedEntity)) {
+    if (defined$3(terria.trackedEntity)) {
       result = terria.trackedEntity.position.getValue(terria.clock.currentTime, result);
     } else {
       rayScratch.origin = camera.positionWC;
       rayScratch.direction = camera.directionWC;
       result = scene.globe.pick(rayScratch, scene, result);
     }
-    if (!defined$4(result)) {
+    if (!defined$3(result)) {
       return undefined;
     }
     if (scene.mode === SceneMode.SCENE2D || scene.mode === SceneMode.COLUMBUS_VIEW) {
@@ -1257,7 +435,7 @@
     return result;
   };
 
-  var defined$5 = Cesium.defined;
+  var defined$4 = Cesium.defined;
   var Ray$1 = Cesium.Ray;
   var IntersectionTests = Cesium.IntersectionTests;
   var Cartesian3$1 = Cesium.Cartesian3;
@@ -1320,7 +498,7 @@
     // this.terria.analytics.logEvent('navigation', 'click', 'zoomIn');
 
     this.isActive = true;
-    if (defined$5(this.terria)) {
+    if (defined$4(this.terria)) {
       var scene = this.terria.scene;
       var sscc = scene.screenSpaceCameraController;
       // do not zoom if it is disabled
@@ -1342,12 +520,12 @@
           break;
         default:
           var focus;
-          if (defined$5(this.terria.trackedEntity)) {
+          if (defined$4(this.terria.trackedEntity)) {
             focus = new Cartesian3$1();
           } else {
             focus = Utils.getCameraFocus(this.terria, false);
           }
-          if (!defined$5(focus)) {
+          if (!defined$4(focus)) {
             // Camera direction is not pointing at the globe, so use the ellipsoid horizon point as
             // the focal point.
             var ray = new Ray$1(camera.worldToCameraCoordinatesPoint(scene.globe.ellipsoid.cartographicToCartesian(camera.positionCartographic)), camera.directionWC);
@@ -1366,7 +544,7 @@
           var direction = Cartesian3$1.subtract(camera.position, focus, cartesian3Scratch);
           var movementVector = Cartesian3$1.multiplyByScalar(direction, relativeAmount, direction);
           var endPosition = Cartesian3$1.add(focus, movementVector, focus);
-          if (defined$5(this.terria.trackedEntity) || scene.mode === SceneMode$1.COLUMBUS_VIEW) {
+          if (defined$4(this.terria.trackedEntity) || scene.mode === SceneMode$1.COLUMBUS_VIEW) {
             // sometimes flyTo does not work (jumps to wrong position) so just set the position without any animation
             // do not use flyTo when tracking an entity because during animatiuon the position of the entity may change
             camera.position = endPosition;
@@ -1391,7 +569,7 @@
 
   var svgCompassRotationMarker = 'M 72.46875,22.03125 C 59.505873,22.050338 46.521615,27.004287 36.6875,36.875 L 47.84375,47.96875 C 61.521556,34.240041 83.442603,34.227389 97.125,47.90625 l 11.125,-11.125 C 98.401629,26.935424 85.431627,22.012162 72.46875,22.03125 z';
 
-  var defined$6 = Cesium.defined;
+  var defined$5 = Cesium.defined;
   var CesiumMath = Cesium.Math;
   var getTimestamp$1 = Cesium.getTimestamp;
   var EventHelper$1 = Cesium.EventHelper;
@@ -1406,25 +584,25 @@
   var _NavigationViewModel = function NavigationViewModel(options) {
     this.terria = options.terria;
     this.eventHelper = new EventHelper$1();
-    this.enableZoomControls = defined$6(options.enableZoomControls) ? options.enableZoomControls : true;
-    this.enableCompass = defined$6(options.enableCompass) ? options.enableCompass : true;
+    this.enableZoomControls = defined$5(options.enableZoomControls) ? options.enableZoomControls : true;
+    this.enableCompass = defined$5(options.enableCompass) ? options.enableCompass : true;
     this.navigationLocked = false;
-    this.compassPosition = defined$6(this.terria.options.compassPosition) ? this.terria.options.compassPosition : {
+    this.compassPosition = defined$5(this.terria.options.compassPosition) ? this.terria.options.compassPosition : {
       bottom: "12rem",
       right: "0rem"
     };
-    this.zoomPosition = defined$6(this.terria.options.zoomPosition) ? this.terria.options.zoomPosition : {
+    this.zoomPosition = defined$5(this.terria.options.zoomPosition) ? this.terria.options.zoomPosition : {
       bottom: "4rem",
       right: "1.5rem"
     };
     this.controls = options.controls;
-    if (!defined$6(this.controls)) {
+    if (!defined$5(this.controls)) {
       this.controls = [new ZoomNavigationControl(this.terria, true), new ResetViewNavigationControl(this.terria), new ZoomNavigationControl(this.terria, false)];
     }
     this.svgCompassOuterRing = svgCompassOuterRing;
     this.svgCompassGyro = svgCompassGyro;
     this.svgCompassRotationMarker = svgCompassRotationMarker;
-    this.showCompass = defined$6(this.terria) && this.enableCompass;
+    this.showCompass = defined$5(this.terria) && this.enableCompass;
     this.heading = this.showCompass ? this.terria.scene.camera.heading : 0.0;
     this.isOrbiting = false;
     this.orbitCursorAngle = 0;
@@ -1450,7 +628,7 @@
       }
     };
     function widgetChange() {
-      if (defined$6(that.terria)) {
+      if (defined$5(that.terria)) {
         if (that._unsubcribeFromPostRender) {
           that._unsubcribeFromPostRender();
           that._unsubcribeFromPostRender = undefined;
@@ -1564,7 +742,7 @@
       }
     }
     var center = Utils.getCameraFocus(viewModel.terria, true, centerScratch);
-    if (!defined$6(center)) {
+    if (!defined$5(center)) {
       // Globe is barely visible, so reset to home view.
       this.controls[1].resetView();
       return;
@@ -1624,7 +802,7 @@
     // Remove existing event handlers, if any.
     document.removeEventListener('mousemove', viewModel.orbitMouseMoveFunction, false);
     document.removeEventListener('mouseup', viewModel.orbitMouseUpFunction, false);
-    if (defined$6(viewModel.orbitTickFunction)) {
+    if (defined$5(viewModel.orbitTickFunction)) {
       viewModel.terria.clock.onTick.removeEventListener(viewModel.orbitTickFunction);
     }
     viewModel.orbitMouseMoveFunction = undefined;
@@ -1633,13 +811,13 @@
     viewModel.isOrbiting = true;
     viewModel.orbitLastTimestamp = getTimestamp$1();
     var camera = scene.camera;
-    if (defined$6(viewModel.terria.trackedEntity)) {
+    if (defined$5(viewModel.terria.trackedEntity)) {
       // when tracking an entity simply use that reference frame
       viewModel.orbitFrame = undefined;
       viewModel.orbitIsLook = false;
     } else {
       var center = Utils.getCameraFocus(viewModel.terria, true, centerScratch);
-      if (!defined$6(center)) {
+      if (!defined$5(center)) {
         viewModel.orbitFrame = Transforms.eastNorthUpToFixedFrame(camera.positionWC, scene.globe.ellipsoid, newTransformScratch);
         viewModel.orbitIsLook = true;
       } else {
@@ -1659,7 +837,7 @@
       if (viewModel.navigationLocked) {
         return true;
       }
-      if (defined$6(viewModel.orbitFrame)) {
+      if (defined$5(viewModel.orbitFrame)) {
         oldTransform = Matrix4.clone(camera.transform, oldTransformScratch);
         camera.lookAtTransform(viewModel.orbitFrame);
       }
@@ -1676,7 +854,7 @@
           camera.rotateUp(y);
         }
       }
-      if (defined$6(viewModel.orbitFrame)) {
+      if (defined$5(viewModel.orbitFrame)) {
         camera.lookAtTransform(oldTransform);
       }
       // viewModel.terria.cesium.notifyRepaintRequired();
@@ -1704,7 +882,7 @@
       viewModel.isOrbiting = false;
       document.removeEventListener('mousemove', viewModel.orbitMouseMoveFunction, false);
       document.removeEventListener('mouseup', viewModel.orbitMouseUpFunction, false);
-      if (defined$6(viewModel.orbitTickFunction)) {
+      if (defined$5(viewModel.orbitTickFunction)) {
         viewModel.terria.clock.onTick.removeEventListener(viewModel.orbitTickFunction);
       }
       viewModel.orbitMouseMoveFunction = undefined;
@@ -1738,13 +916,13 @@
     viewModel.rotateMouseUpFunction = undefined;
     viewModel.isRotating = true;
     viewModel.rotateInitialCursorAngle = Math.atan2(-cursorVector.y, cursorVector.x);
-    if (defined$6(viewModel.terria.trackedEntity)) {
+    if (defined$5(viewModel.terria.trackedEntity)) {
       // when tracking an entity simply use that reference frame
       viewModel.rotateFrame = undefined;
       viewModel.rotateIsLook = false;
     } else {
       var viewCenter = Utils.getCameraFocus(viewModel.terria, true, centerScratch);
-      if (!defined$6(viewCenter) || scene.mode === SceneMode$2.COLUMBUS_VIEW && !sscc.enableLook && !sscc.enableTranslate) {
+      if (!defined$5(viewCenter) || scene.mode === SceneMode$2.COLUMBUS_VIEW && !sscc.enableLook && !sscc.enableTranslate) {
         viewModel.rotateFrame = Transforms.eastNorthUpToFixedFrame(camera.positionWC, scene.globe.ellipsoid, newTransformScratch);
         viewModel.rotateIsLook = true;
       } else {
@@ -1753,12 +931,12 @@
       }
     }
     var oldTransform;
-    if (defined$6(viewModel.rotateFrame)) {
+    if (defined$5(viewModel.rotateFrame)) {
       oldTransform = Matrix4.clone(camera.transform, oldTransformScratch);
       camera.lookAtTransform(viewModel.rotateFrame);
     }
     viewModel.rotateInitialCameraAngle = -camera.heading;
-    if (defined$6(viewModel.rotateFrame)) {
+    if (defined$5(viewModel.rotateFrame)) {
       camera.lookAtTransform(oldTransform);
     }
     viewModel.rotateMouseMoveFunction = function (e) {
@@ -1771,13 +949,13 @@
       var newCameraAngle = CesiumMath.zeroToTwoPi(viewModel.rotateInitialCameraAngle - angleDifference);
       var camera = viewModel.terria.scene.camera;
       var oldTransform;
-      if (defined$6(viewModel.rotateFrame)) {
+      if (defined$5(viewModel.rotateFrame)) {
         oldTransform = Matrix4.clone(camera.transform, oldTransformScratch);
         camera.lookAtTransform(viewModel.rotateFrame);
       }
       var currentCameraAngle = -camera.heading;
       camera.rotateRight(newCameraAngle - currentCameraAngle);
-      if (defined$6(viewModel.rotateFrame)) {
+      if (defined$5(viewModel.rotateFrame)) {
         camera.lookAtTransform(oldTransform);
       }
 
@@ -1795,7 +973,7 @@
   }
 
   /* eslint-disable no-unused-vars */
-  var defined$7 = Cesium.defined;
+  var defined$6 = Cesium.defined;
   var CesiumEvent = Cesium.Event;
   var DeveloperError$2 = Cesium.DeveloperError;
   /**
@@ -1824,21 +1002,21 @@
     return this._navigationLocked;
   };
   CesiumNavigation.prototype.destroy = function () {
-    if (defined$7(this.navigationViewModel)) {
+    if (defined$6(this.navigationViewModel)) {
       this.navigationViewModel.destroy();
     }
-    if (defined$7(this.distanceLegendViewModel)) {
+    if (defined$6(this.distanceLegendViewModel)) {
       this.distanceLegendViewModel.destroy();
     }
-    if (defined$7(this.navigationDiv)) {
+    if (defined$6(this.navigationDiv)) {
       this.navigationDiv.parentNode.removeChild(this.navigationDiv);
     }
     delete this.navigationDiv;
-    if (defined$7(this.distanceLegendDiv)) {
+    if (defined$6(this.distanceLegendDiv)) {
       this.distanceLegendDiv.parentNode.removeChild(this.distanceLegendDiv);
     }
     delete this.distanceLegendDiv;
-    if (defined$7(this.container)) {
+    if (defined$6(this.container)) {
       this.container.parentNode.removeChild(this.container);
     }
     delete this.container;
@@ -1857,19 +1035,19 @@
    * @param options
    */
   function initialize(viewerCesiumWidget, options) {
-    if (!defined$7(viewerCesiumWidget)) {
+    if (!defined$6(viewerCesiumWidget)) {
       throw new DeveloperError$2('CesiumWidget or Viewer is required.');
     }
-    var cesiumWidget = defined$7(viewerCesiumWidget.cesiumWidget) ? viewerCesiumWidget.cesiumWidget : viewerCesiumWidget;
+    var cesiumWidget = defined$6(viewerCesiumWidget.cesiumWidget) ? viewerCesiumWidget.cesiumWidget : viewerCesiumWidget;
     var container = document.createElement('div');
     container.className = 'cesium-widget-cesiumNavigationContainer';
     cesiumWidget.container.appendChild(container);
     this.terria = viewerCesiumWidget;
-    this.terria.options = defined$7(options) ? options : {};
+    this.terria.options = defined$6(options) ? options : {};
     this.terria.afterWidgetChanged = new CesiumEvent();
     this.terria.beforeWidgetChanged = new CesiumEvent();
     this.container = container;
-    if (!defined$7(this.terria.options.enableDistanceLegend) || this.terria.options.enableDistanceLegend) {
+    if (!defined$6(this.terria.options.enableDistanceLegend) || this.terria.options.enableDistanceLegend) {
       this.distanceLegendDiv = document.createElement('div');
       container.appendChild(this.distanceLegendDiv);
       this.distanceLegendDiv.setAttribute('id', 'distanceLegendDiv');
@@ -1880,7 +1058,7 @@
         enableDistanceLegend: true
       });
     }
-    if ((!defined$7(this.terria.options.enableZoomControls) || this.terria.options.enableZoomControls) && (!defined$7(this.terria.options.enableCompass) || this.terria.options.enableCompass)) {
+    if ((!defined$6(this.terria.options.enableZoomControls) || this.terria.options.enableZoomControls) && (!defined$6(this.terria.options.enableCompass) || this.terria.options.enableCompass)) {
       this.navigationDiv = document.createElement('div');
       this.navigationDiv.setAttribute('id', 'navigationDiv');
       container.appendChild(this.navigationDiv);
@@ -1890,7 +1068,7 @@
         enableZoomControls: true,
         enableCompass: true
       });
-    } else if (defined$7(this.terria.options.enableZoomControls) && !this.terria.options.enableZoomControls && (!defined$7(this.terria.options.enableCompass) || this.terria.options.enableCompass)) {
+    } else if (defined$6(this.terria.options.enableZoomControls) && !this.terria.options.enableZoomControls && (!defined$6(this.terria.options.enableCompass) || this.terria.options.enableCompass)) {
       this.navigationDiv = document.createElement('div');
       this.navigationDiv.setAttribute('id', 'navigationDiv');
       container.appendChild(this.navigationDiv);
@@ -1900,7 +1078,7 @@
         enableZoomControls: false,
         enableCompass: true
       });
-    } else if ((!defined$7(this.terria.options.enableZoomControls) || this.terria.options.enableZoomControls) && defined$7(this.terria.options.enableCompass) && !this.terria.options.enableCompass) {
+    } else if ((!defined$6(this.terria.options.enableZoomControls) || this.terria.options.enableZoomControls) && defined$6(this.terria.options.enableCompass) && !this.terria.options.enableCompass) {
       this.navigationDiv = document.createElement('div');
       this.navigationDiv.setAttribute('id', 'navigationDiv');
       container.appendChild(this.navigationDiv);
@@ -1910,7 +1088,7 @@
         enableZoomControls: true,
         enableCompass: false
       });
-    } else if (defined$7(this.terria.options.enableZoomControls) && !this.terria.options.enableZoomControls && defined$7(this.terria.options.enableCompass) && !this.terria.options.enableCompass) ;
+    } else if (defined$6(this.terria.options.enableZoomControls) && !this.terria.options.enableZoomControls && defined$6(this.terria.options.enableCompass) && !this.terria.options.enableCompass) ;
   }
 
   return CesiumNavigation;
