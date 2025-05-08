@@ -36,8 +36,15 @@ options.enableZoomControls = true;
 options.enableDistanceLegend = true;
 // 用于启用或禁用指南针外环。true是启用，false是禁用。默认值为true。如果将选项设置为false，则该环将可见但无效。
 options.enableCompassOuterRing = true;
-
-
+//添加自定义指南针和缩放控件的位置
+options.compassPosition = {
+    bottom:"11rem",
+    right:"0rem"
+};
+options.zoomPosition = {
+    bottom:"5rem",
+    right:"2rem"
+};
 CesiumNavigation.umd(viewer, options);
 
 ```
