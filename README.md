@@ -7,7 +7,8 @@
 - 在html文件中引用Cesium和Cesium必要样式表
 
 - 在html文件中引用`CesiumNavigation.umd.js`和`cesium-navigation.css`
-- 初始化viewer 调用` CesiumNavigation.umd(viewer, options)`
+
+- 初始化viewer 调用`CesiumNavigation.umd(viewer, options)`
 
 ```javascript
 
