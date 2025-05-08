@@ -1,6 +1,6 @@
 # Cesium指北针及放大缩小组件
 
-## 使用说明
+## 1、使用说明
 
 - 如果你的Cesium没有挂载在window下，那么修改`src/cesium/Cesium.js`，改为你对应的引用，然后运行`npm run build`
 
@@ -51,12 +51,18 @@ CesiumNavigation.umd(viewer, options);
 
 ```
 
-## 编译说明
+## 2、编译说明
 
 ```bash
 npm run build 
 ```
 
-## 感谢作者的源码
+## 3、感谢作者的源码
 
 [原作者的主页](https://github.com/worlddai/cesium-navigation-umd)
+
+## 4、改进说明
+
+* 样式进行了调优
+* 代码进行优化，兼容新版的Cesium的语法
+* 添加自定义指南针和放大缩小空间的位置
