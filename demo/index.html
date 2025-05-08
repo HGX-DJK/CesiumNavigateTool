@@ -11,22 +11,24 @@
     <script type="text/javascript" src="../dist/CesiumNavigation.umd.js"></script>
 
 <body>
-    <div id="test" style="width:100%;height:100%"></div>
+    <div id="cesium-container" style="width:100%;height:100%"></div>
 
     <script type="text/javascript">
-         
-        var viewer = new Cesium.Viewer(document.getElementById('test'), {
-            imageryProvider: false,
-            baseLayerPicker: false,
-            timeline: false,
-            infoBox: false,
-            navigationHelpButton: false,
-            fullscreenButton: false,
-            animation: false,
-            geocoder: false,
-            homeButton: false,
-            sceneModePicker: false
-
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3ZjQ5ZGUzNC1jNWYwLTQ1ZTMtYmNjYS05YTY4ZTVmN2I2MDkiLCJpZCI6MTE3MTM4LCJpYXQiOjE2NzY0NDUyODB9.ZaNSBIfc1sGLhQd_xqhiSsc0yr8oS0wt1hAo9gbke6M'
+        //注册Cesium Ion令牌
+        viewer = new Cesium.Viewer("cesium-container", {
+            geocoder: true,              //控制地图是否显示一个地理编码（geocoding）控件，允许用户搜索地点并定位到特定位置。
+            homeButton: true,            //控制是否显示一个回到初始视图的按钮，允许用户快速返回到地图的初始状态
+            animation: true,             //控制是否显示动画控件，允许用户播放、暂停或者改变时间。
+            fullscreenButton: true,      //控制是否显示全屏按钮，允许用户切换地图进入或退出全屏模式。
+            sceneModePicker: true,       //控制是否显示场景模式选择器，允许用户在 2D、3D 和 CV（Columbus View）模式之间切换
+            timeline: true,              //控制是否显示时间轴控件，允许用户在时间上浏览数据。
+            navigationHelpButton: true,  //控制是否显示导航帮助按钮，提供关于如何使用地图导航控件的帮助信息
+            baseLayerPicker: true,       //控制是否显示基础图层选择器，允许用户选择不同的基础图层（如卫星影像、地图等）。
+            infoBox: true,               //控制是否显示信息框，当用户点击地图上的对象时，会显示与该对象相关的信息。
+            scene3DOnly: true,           //如果设置为true，则所有几何图形以3D模式绘制以节约GPU资源
+            selectionIndicator: true,    //控制是否显示选择指示器，用于指示当前选择的地图对象。
+            baselLayerPicker: true,      //控制是否显示基础图层选择器，允许用户选择不同的基础图层。
         });
         setViewDestination();
         //设置地图视角
@@ -44,22 +46,6 @@
                 }
             });
         };
-        var provider =  new Cesium.WebMapTileServiceImageryProvider({
-            url:
-              "http://t0.tianditu.com/vec_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=vec&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=93d1fdef41f93d2211deed6d22780c48",
-            layer: "tdtVecBasicLayer",
-            style: "default",
-            format: "image/jpeg",
-            tileMatrixSetID: "GoogleMapsCompatible",
-            show: false
-          })
-
-        var layer = new Cesium.ImageryLayer(provider, {
-           
-        });
-
-        viewer.imageryLayers.add(layer);
-
 
         var options = {};
         // 用于在使用重置导航重置地图视图时设置默认视图控制。接受的值是Cesium.Cartographic 和 Cesium.Rectangle.
@@ -72,6 +58,7 @@
         options.enableDistanceLegend = true;
         // 用于启用或禁用指南针外环。true是启用，false是禁用。默认值为true。如果将选项设置为false，则该环将可见但无效。
         options.enableCompassOuterRing = true;
+        //自定义任意位置指南针和放大缩小控件
         options.compassPosition = {
             bottom:"11rem",
             right:"0rem"
