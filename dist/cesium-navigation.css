@@ -363,8 +363,8 @@ input:focus {
 }
 .navigation-controls {
   position: absolute;
-  width: 30px;
-  background-color: #fff;
+  width: 35px;
+  background-color: #e5e4e5;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
   font-weight: 300;
@@ -377,6 +377,7 @@ input:focus {
 }
 .navigation-control {
   cursor: pointer;
+  padding: 0.3rem 0;
   border-bottom: 1px solid #555555;
 }
 .naviagation-control:active {
