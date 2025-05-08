@@ -107,7 +107,6 @@ ZoomNavigationControl.prototype.zoom = function (relativeAmount) {
           // the focal point.
           var ray = new Ray(camera.worldToCameraCoordinatesPoint(scene.globe.ellipsoid.cartographicToCartesian(camera.positionCartographic)), camera.directionWC)
           focus = IntersectionTests.grazingAltitudeLocation(ray, scene.globe.ellipsoid)
-
           orientation = {
             heading: camera.heading,
             pitch: camera.pitch,
@@ -118,23 +117,19 @@ ZoomNavigationControl.prototype.zoom = function (relativeAmount) {
             direction: camera.direction,
             up: camera.up
           }
-        }
-
+        };
         var direction = Cartesian3.subtract(camera.position, focus, cartesian3Scratch)
         var movementVector = Cartesian3.multiplyByScalar(direction, relativeAmount, direction)
         var endPosition = Cartesian3.add(focus, movementVector, focus)
-
         if (defined(this.terria.trackedEntity) || scene.mode === SceneMode.COLUMBUS_VIEW) {
-          // sometimes flyTo does not work (jumps to wrong position) so just set the position without any animation
-          // do not use flyTo when tracking an entity because during animatiuon the position of the entity may change
-          camera.position = endPosition
+           camera.position = endPosition
         } else {
-          camera.flyTo({
-            destination: endPosition,
-            orientation: orientation,
-            duration: 0.5,
-            convert: false
-          })
+            camera.flyTo({
+              destination: endPosition,
+              orientation: orientation,
+              duration: 0.5,
+              convert: false
+            })
         }
     }
   }
